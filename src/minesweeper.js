@@ -43,25 +43,29 @@ class Board {
   };
 
   hasSafeTiles() {
-    return this._numberOfTiles !== this._numberOfBombs;    
+    return this._numberOfTiles !== this._numberOfBombs;
   }
 
-}
-
-const generatePlayerBoard = (numberOfRows, numberOfColumns) => {
-  let board = [];
-  for (let i = 0; i < numberOfRows; i++){
-    // Create new array for each row
-    let row = [];
-    for (let j = 0; j < numberOfColumns; j++){
-      // Create new column within each row array - set to blank space
-      row.push(' ');
-    };
-    // Add rows to board
-    board.push(row);
+  print() {
+    console.log(board.map(row => row.join(' | ')).join('\n'));
   };
-  return board;
-};
+
+  static generatePlayerBoard(numberOfRows, numberOfColumns) {
+    let board = [];
+    for (let i = 0; i < numberOfRows; i++){
+      // Create new array for each row
+      let row = [];
+      for (let j = 0; j < numberOfColumns; j++){
+        // Create new column within each row array - set to blank space
+        row.push(' ');
+      };
+      // Add rows to board
+      board.push(row);
+    };
+    return board;
+  };
+
+}
 
 const generateBombBoard = (numberOfRows, numberOfColumns, numberOfBombs) => {
   let board = [];
@@ -91,10 +95,6 @@ const generateBombBoard = (numberOfRows, numberOfColumns, numberOfBombs) => {
       }
   };
   return board;
-};
-
-const printBoard = board => {
-  console.log(board.map(row => row.join(' | ')).join('\n'));
 };
 
 const playerBoard = generatePlayerBoard(3, 4);
